@@ -1,6 +1,7 @@
 package com.example.ppro3project.model;
 
 public class Car {
+    private int id = -1;
     private String spz;
     private String color;
     private float tankVolume;
@@ -31,5 +32,29 @@ public class Car {
 
     public int getNumberOfSeats() {
         return numberOfSeats;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setSpz(String spz) {
+        this.spz = spz;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setTankVolume(float tankVolume) {
+        this.tankVolume = tankVolume;
+    }
+
+    public void setNumberOfSeats(int numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
     }
 }

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car detail</title>
+</head>
+<body>
+    <h4>Detail vozidla: <span th:text="${car.getSpz()}"></span></h4>
+    <ul>
+        <li>Barva: <span th:text="${car.getColor()}"></span></li>
+        <li>Počet sedadel: <span th:text="${car.getNumberOfSeats()}"></span></li>
+        <li>Objem nádrže: <span th:text="${car.getTankVolume()}"></span></li>
+    </ul>
+    <a th:href="@{'/edit/' + ${index}}">Editace vozidla</a>
+    <a th:href="@{'/delete/' + ${index}}">Smazání vozidla</a>
+
+</body>
+</html>
