@@ -51,7 +51,10 @@ public class CarController {
     @GetMapping("/edit/{index}")
     public String edit(Model model, @PathVariable int index) {
         if (index >= 0 && index < cars.size()) {
-            model.addAttribute("car", cars.get(index));
+            Car car = cars.get(index);
+            car.setId(index);
+
+            model.addAttribute("car", car);
             model.addAttribute("edit", true);
             return "edit";
         }
