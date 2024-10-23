@@ -9,9 +9,13 @@
     <form th:action="@{'/cars/save'}" method="post" th:object="${car}"><br>
         <input type="hidden" id="hidden" th:field="*{id}">
         <label for="spz">SPZ: </label><input id="spz" type="text" placeholder="SPZ" th:field="*{spz}"><br>
+        <span style="color: red;" th:if="${#fields.hasErrors('spz')}" th:errors="*{spz}"></span><br>
         <label for="color">Barva: </label><input id="color" type="text" placeholder="Barva" th:field="*{color}"><br>
+        <span style="color: red;" th:if="${#fields.hasErrors('color')}" th:errors="*{color}"></span><br>
         <label for="tankVolume">Objem nádrže: </label><input id="tankVolume" type="number" placeholder="Objem nádrže" th:field="*{tankVolume}"><br>
+        <span style="color: red;" th:if="${#fields.hasErrors('tankVolume')}" th:errors="*{tankVolume}"></span><br>
         <label for="numberOfSeats">Počet sedadel: </label><input id="numberOfSeats" type="number" placeholder="Počet sedadel" th:field="*{numberOfSeats}"><br>
+        <span style="color: red;" th:if="${#fields.hasErrors('numberOfSeats')}" th:errors="*{numberOfSeats}"></span><br>
         <input type="submit" value="Save">
     </form>
 

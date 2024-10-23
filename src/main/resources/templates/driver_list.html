@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>List of cars</title>
+    <title>List of drivers</title>
 </head>
 <body>
     <h3 style="text-align: center">Seznam řidičů</h3>
-    <a th:href="@{'/drivers/create'}">Nové vozidlo</a>
+    <a th:href="@{'/drivers/create'}">Nový řidič</a>
     <ul>
-        <li th:each="car, iter: ${drivers}">
+        <li th:each="driver, iter: ${drivers}">
             <a th:href="@{'/drivers/detail/' + ${iter.index}}">
                 <span th:text="${driver.name}"></span>
             </a>

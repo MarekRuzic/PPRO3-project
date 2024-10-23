@@ -2,9 +2,11 @@ package com.example.ppro3project.controller;
 
 import com.example.ppro3project.model.Car;
 import com.example.ppro3project.service.CarService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -61,8 +63,12 @@ public class CarController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Car car) {
+    public String save(@Valid Car car, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("edit", true);
+            return "car_edit";
+        }
         carService.saveCar(car);
-        return "redirect:/";
+        return "redirect:/cars/";
     }
 }

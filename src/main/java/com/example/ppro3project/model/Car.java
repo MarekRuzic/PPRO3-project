@@ -1,10 +1,24 @@
 package com.example.ppro3project.model;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class Car {
     private int id = -1;
+    @Size(min = 7, max = 7, message = "Nesprávná velikost SPZ")
     private String spz;
+
+    @NotBlank
     private String color;
+
+    @Min(value = 20, message = "Příliž malá nádrž")
+    @Max(value = 100)
     private float tankVolume;
+
+    @Min(value = 2)
+    @Max(value = 10)
     private int numberOfSeats;
 
     public Car() {
