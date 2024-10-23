@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of cars</title>
+</head>
+<body>
+    <h3 style="text-align: center">Seznam řidičů</h3>
+    <a th:href="@{'/drivers/create'}">Nové vozidlo</a>
+    <ul>
+        <li th:each="car, iter: ${drivers}">
+            <a th:href="@{'/drivers/detail/' + ${iter.index}}">
+                <span th:text="${driver.name}"></span>
+            </a>
+        </li>
+    </ul>
+
+</body>
+</html>

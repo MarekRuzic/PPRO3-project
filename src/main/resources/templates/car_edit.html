@@ -6,7 +6,7 @@
 </head>
 <body>
     <h2 style="text-align: center">Nové vozidlo</h2>
-    <form th:action="@{'/save'}" method="post" th:object="${car}"><br>
+    <form th:action="@{'/cars/save'}" method="post" th:object="${car}"><br>
         <input type="hidden" id="hidden" th:field="*{id}">
         <label for="spz">SPZ: </label><input id="spz" type="text" placeholder="SPZ" th:field="*{spz}"><br>
         <label for="color">Barva: </label><input id="color" type="text" placeholder="Barva" th:field="*{color}"><br>

@@ -11,8 +11,8 @@
         <li>Počet sedadel: <span th:text="${car.getNumberOfSeats()}"></span></li>
         <li>Objem nádrže: <span th:text="${car.getTankVolume()}"></span></li>
     </ul>
-    <a th:href="@{'/edit/' + ${index}}">Editace vozidla</a>
-    <a th:href="@{'/delete/' + ${index}}">Smazání vozidla</a>
+    <a th:href="@{'/cars/edit/' + ${index}}">Editace vozidla</a>
+    <a th:href="@{'/cars/delete/' + ${index}}">Smazání vozidla</a>
 
 </body>
 </html>

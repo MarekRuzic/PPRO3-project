@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${edit} ? 'Edit car' : 'New car'"></title>
+</head>
+<body>
+    <h2 style="text-align: center">Nové vozidlo</h2>
+    <form th:action="@{'/drivers/save'}" method="post" th:object="${driver}"><br>
+        <input type="hidden" id="hidden" th:field="*{id}">
+        <label for="spz">Jméno: </label><input id="spz" type="text" placeholder="Jméno" th:field="*{name}"><br>
+        <label for="tankVolume">Věk: </label><input id="tankVolume" type="number" placeholder="Věk" th:field="*{age}"><br>
+        <label for="numberOfSeats">Plat: </label><input id="numberOfSeats" type="number" placeholder="Plat" th:field="*{salary}"><br>
+        <input type="submit" value="Save">
+    </form>
+
+</body>
+</html>
