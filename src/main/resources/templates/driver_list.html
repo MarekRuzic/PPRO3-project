@@ -8,8 +8,8 @@
     <h3 style="text-align: center">Seznam řidičů</h3>
     <a th:href="@{'/drivers/create'}">Nový řidič</a>
     <ul>
-        <li th:each="driver, iter: ${drivers}">
-            <a th:href="@{'/drivers/detail/' + ${iter.index}}">
+        <li th:each="driver: ${drivers}">
+            <a th:href="@{'/drivers/detail/' + ${driver.id}}">
                 <span th:text="${driver.name}"></span>
             </a>
         </li>

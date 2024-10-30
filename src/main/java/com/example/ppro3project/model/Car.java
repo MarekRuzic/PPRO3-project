@@ -1,12 +1,18 @@
 package com.example.ppro3project.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+@Entity
+@Table(name = "cars")
 public class Car {
-    private int id = -1;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     @Size(min = 7, max = 7, message = "Nesprávná velikost SPZ")
     private String spz;
 
@@ -48,11 +54,11 @@ public class Car {
         return numberOfSeats;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

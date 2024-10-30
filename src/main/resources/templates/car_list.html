@@ -8,8 +8,8 @@
     <h3 style="text-align: center">Seznam vozidel</h3>
     <a th:href="@{'/cars/create'}">Nové vozidlo</a>
     <ul>
-        <li th:each="car, iter: ${cars}">
-            <a th:href="@{'/cars/detail/' + ${iter.index}}">
+        <li th:each="car: ${cars}">
+            <a th:href="@{'/cars/detail/' + ${car.id}}">
                 <span th:text="${car.spz}"></span>
             </a>
         </li>

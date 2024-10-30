@@ -2,12 +2,12 @@ package com.example.ppro3project.service;
 
 import com.example.ppro3project.model.Driver;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface DriverService {
 
-    ArrayList<Driver> getAllDrivers();
-    Driver getDriverById(int id);
-    void deleteDriverById(int id);
+    List<Driver> getAllDrivers();
+    Driver getDriverById(long id);
+    void deleteDriverById(long id);
     void saveDriver(Driver car);
 }
