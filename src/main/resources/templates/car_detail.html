@@ -10,6 +10,7 @@
         <li>Barva: <span th:text="${car.getColor()}"></span></li>
         <li>Počet sedadel: <span th:text="${car.getNumberOfSeats()}"></span></li>
         <li>Objem nádrže: <span th:text="${car.getTankVolume()}"></span></li>
+        <li>Řidič: <span th:text="${car.driver.getName()}"></span></li>
     </ul>
     <a th:href="@{'/cars/edit/' + ${car.id}}">Editace vozidla</a>
     <a th:href="@{'/cars/delete/' + ${car.id}}">Smazání vozidla</a>

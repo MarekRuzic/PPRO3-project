@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Entity
 @Table(name = "drivers")
 public class Driver {
@@ -26,6 +28,16 @@ public class Driver {
     @Max(value = 80000, message = "Salary must not exceed 80 000")
     private int salary;
 
+    @OneToMany(mappedBy = "driver")
+    private List<Car> cars;
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
+    }
 
     public long getId() {
         return id;

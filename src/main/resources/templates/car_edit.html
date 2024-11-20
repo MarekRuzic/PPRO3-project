@@ -16,6 +16,10 @@
         <span style="color: red;" th:if="${#fields.hasErrors('tankVolume')}" th:errors="*{tankVolume}"></span><br>
         <label for="numberOfSeats">Počet sedadel: </label><input id="numberOfSeats" type="number" placeholder="Počet sedadel" th:field="*{numberOfSeats}"><br>
         <span style="color: red;" th:if="${#fields.hasErrors('numberOfSeats')}" th:errors="*{numberOfSeats}"></span><br>
+        Driver:
+        <select th:field="*{driver}">
+            <option th:each="driver: ${drivers}" th:text="${driver.name}" th:value="${driver.id}"></option>
+        </select>
         <input type="submit" value="Save">
     </form>
 
