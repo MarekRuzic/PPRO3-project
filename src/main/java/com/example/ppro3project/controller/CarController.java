@@ -71,6 +71,7 @@ public class CarController {
     public String save(@Valid Car car, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("edit", true);
+            model.addAttribute("drivers", driverService.getAllDrivers());
             return "car_edit";
         }
         carService.saveCar(car);
