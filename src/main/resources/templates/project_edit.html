@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/fragments/layouts/base_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <section layout:fragment="content" class="container">
+        <h3 class="text-center mb-5 mt-3">Nový projekt</h3>
+        <hr>
+        <form th:action="@{'/projects/save'}" method="post" th:object="${project}">
+            <input type="hidden" id="hidden" th:field="*{id}">
+            <div class="mb-3">
+                <label for="projectName" class="form-label">Název projektu</label>
+                <input type="text" class="form-control" id="projectName" th:field="*{name}" aria-describedby="projectNameWarning">
+                <div id="projectNameWarning" class="form-text text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">Lokace</label>
+                <input type="text" class="form-control" id="location" th:field="*{location}" aria-describedby="locationWarning">
+                <div id="locationWarning" class="form-text text-danger" th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></div>
+            </div>
+            <div class="mb-3">
+                <label for="date" class="form-label">Datum</label>
+                <input type="datetime-local" class="form-control" id="date" th:field="*{date}" aria-describedby="dateWarning">
+                <div id="dateWarning" class="form-text text-danger" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Popis projektu</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" th:field="*{description}"></textarea>
+                <span id="descriptionWarning" class="form-text text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Vytvořit novou událost</button>
+        </form>
+    </section>
+
+</body>
+</html>

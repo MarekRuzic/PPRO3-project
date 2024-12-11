@@ -35,4 +35,9 @@ public class ProjectServiceImpl implements ProjectService {
             projectRepository.delete(project.get());
         }
     }
+
+    @Override
+    public void saveProject(Project project) {
+        projectRepository.save(project);
+    }
 }

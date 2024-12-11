@@ -1,9 +1,14 @@
 package com.example.ppro3project.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @Entity
 @Table(name = "projects")
@@ -19,6 +24,7 @@ public class Project {
     private String name;
 
     // Popisek projektu
+    @NotBlank
     private String description;
 
     // Místo konání projektu
@@ -26,15 +32,15 @@ public class Project {
     private String location;
 
     // Datum konání
-    @NotBlank
-    private LocalDate date;
+    @NotNull(message = "Neplatné datum")
+    private LocalDateTime date;
 
     // Uživatel, který koná akci
     @ManyToOne
     @JoinColumn(name = "organizer_id")
     private User organizer;
 
-    public Project(long id, String name, String description, String location, LocalDate date, User organizer) {
+    public Project(long id, String name, String description, String location, LocalDateTime date, User organizer) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -79,11 +85,20 @@ public class Project {
         this.location = location;
     }
 
-    public @NotBlank LocalDate getDate() {
+    public @NotNull LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(@NotBlank LocalDate date) {
+    public String getDateString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+        return date.format(formatter);
+    }
+
+    public void setDate(@NotNull LocalDateTime date) {
+        if (date.isBefore(LocalDateTime.now()))
+        {
+            return;
+        }
         this.date = date;
     }
 

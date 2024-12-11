@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/fragments/layouts/base_layout}">
+<head>
+  <title>Událost detail</title>
+</head>
+<body>
+  <section layout:fragment="content" class="container">
+    <h3 class="text-center mb-5 mt-3" th:text="${project.name}"></h3>
+    <hr>
+    <div class="row">
+      <div class="col-md-6 col-lg-4">
+        <div class="card mt-2">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <h3 class="card-title">Více o události</h3>
+              <div class="float-end">
+                <a class="btn btn-sm btn-outline-secondary mb-2 me-2" th:href="@{'/projects/edit/' + ${project.id}}">Upravit událost <i class="bi bi-pencil-square"></i></a>
+                <a class="btn btn-sm btn-outline-danger float-end" onclick="return confirm('Opravdu si přejete smazat tuto událost?')" th:href="@{'/projects/delete/' + ${project.id}}"><i class="bi bi-trash"></i></a>
+              </div>
+            </div>
+            <div class="divideLine mb-2"></div>
+            <h5 class="card-text">----</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <span class="float-start">Datum: </span>
+              <span class="float-end" th:text="${project.getDateString()}"></span>
+            </li>
+            <li class="list-group-item">
+              <span class="float-start">Lokace: </span>
+              <span class="float-end" th:text="${project.location}"></span>
+            </li>
+            <li class="list-group-item">
+              <span class="float-start">Organizátor: </span>
+              <span class="float-end" th:text="${project.organizer.getUsername()}"></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-8">
+            <div class="mt-2">
+              <h4>Stručný popis:</h4>
+              <div>
+                <p th:text="${project.description}"></p>
+              </div>
+            </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
