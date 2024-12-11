@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/fragments/layouts/base_layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home</title>
 </head>
-<body style="text-align: center">
-    <h1>PPRO project</h1>
-    <a th:href="@{'/cars/'}">Seznam vozidel</a><br>
-    <br>
-    <a th:href="@{'/drivers/'}">Seznam řidičů</a>
+<body>
+    <section layout:fragment="content">
+        <div class="container">
+            <h1 class="btn">PPRO project</h1>
+            <a th:href="@{'/cars/'}">Seznam vozidel</a><br>
+            <br>
+            <a th:href="@{'/drivers/'}">Seznam řidičů</a>
+        </div>
+    </section>
 </body>
 </html>

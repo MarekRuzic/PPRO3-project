@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/fragments/layouts/base_layout}">
+<head>
+    <title>Seznam projektů</title>
+</head>
+<body>
+    <section layout:fragment="content" class="container">
+        <h3 class="text-center mb-5 mt-3">Seznam projektů</h3>
+        <hr>
+        <a href="#" class="btn btn-outline-danger float-end">Přidat novou událost</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Datum</th>
+                <th scope="col">Název</th>
+                <th scope="col">Lokace</th>
+                <th scope="col">Tlačítko</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="project: ${projects}">
+                <th scope="row" th:text="${project.date}"></th>
+                <td th:text="${project.name}"></td>
+                <td th:text="${project.location}"></td>
+                <td><a class="btn btn-sm btn-success"
+                       th:href="@{'/projects/detail/' + ${project.id}}">Více o události</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+</body>
+</html>
