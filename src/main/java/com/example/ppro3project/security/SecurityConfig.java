@@ -36,7 +36,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/admin/**").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers("/projects/create", "/projects/edit/**", "/projects/delete/**").hasRole("ORGANIZATOR")
+                        .requestMatchers("/admin/**").hasAnyRole("ORGANIZATOR", "DOBROVOLNIK")
                         .anyRequest().authenticated()
                 )
                 .formLogin(Customizer.withDefaults())

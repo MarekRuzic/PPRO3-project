@@ -2,6 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="~{/fragments/layouts/base_layout}">
 <head>
     <title>Seznam projektů</title>
@@ -10,7 +11,7 @@
     <section layout:fragment="content" class="container">
         <h3 class="text-center mb-5 mt-3">Seznam projektů</h3>
         <hr>
-        <a th:href="@{'/projects/create'}" class="btn btn-outline-danger float-end">Přidat novou událost</a>
+        <a th:href="@{'/projects/create'}" class="btn btn-outline-danger float-end" sec:authorize="hasRole('ORGANIZATOR')">Přidat novou událost</a>
         <table class="table">
             <thead>
             <tr>

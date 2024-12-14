@@ -12,6 +12,7 @@ public class User {
     private Long id;
     private String username;
     private String password;
+    private String email;
     private String role;
 
     @OneToMany(mappedBy = "organizer", cascade = CascadeType.ALL)
@@ -47,5 +48,13 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

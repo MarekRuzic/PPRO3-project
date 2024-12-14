@@ -25,17 +25,18 @@ public class Ppro3ProjectApplication {
     @Bean
     public CommandLineRunner demo() {
         return (args) -> {
-            addUser("admin", "heslo", "ADMIN");
-            addUser("user", "heslo", "USER");
+            addUser("admin", "heslo", "ORGANIZATOR", "admin@admin.cz");
+            addUser("user", "heslo", "DOBROVOLNIK", "user@user.cz");
         };
     }
 
-    private void addUser(String username, String password, String role) {
+    private void addUser(String username, String password, String role, String email) {
         if (userService.findByUsername(username) == null) {
             User user = new User();
             user.setUsername(username);
             user.setPassword(passwordEncoder.encode(password));
             user.setRole(role);
+            user.setEmail(email);
             userService.save(user);
         }
     }
