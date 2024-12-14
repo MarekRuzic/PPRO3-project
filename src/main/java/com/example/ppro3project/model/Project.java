@@ -8,7 +8,9 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "projects")
@@ -39,6 +41,9 @@ public class Project {
     @ManyToOne
     @JoinColumn(name = "organizer_id")
     private User organizer;
+
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    private List<Registration> registrations;
 
     public Project(long id, String name, String description, String location, LocalDateTime date, User organizer) {
         this.id = id;

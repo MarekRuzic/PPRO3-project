@@ -18,6 +18,9 @@ public class User {
     @OneToMany(mappedBy = "organizer", cascade = CascadeType.ALL)
     private List<Project> projects;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Registration> registrations;
+
     public Long getId() {
         return id;
     }
