@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{/fragments/layouts/base_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Seznam registrovaných akcí</title>
+</head>
+<body>
+  <section layout:fragment="content" class="container">
+    <h3 class="text-center mb-5 mt-3">Seznam registrací na projektech</h3>
+    <hr>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Datum</th>
+        <th scope="col">Projekt</th>
+        <th scope="col">Tlačítko</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="registration: ${registrations}">
+        <th scope="row" th:text="${registration.getDateString()}"></th>
+        <td th:text="${registration.project}"></td>
+        <td><a class="btn btn-sm btn-success"
+               th:href="@{'/projects/detail/' + ${registration.project}}">Více o události</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+
+</body>
+</html>

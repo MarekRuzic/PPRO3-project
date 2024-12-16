@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "registration")
@@ -46,6 +47,11 @@ public class Registration {
 
     public @NotNull(message = "Neplatné datum") LocalDate getDate() {
         return date;
+    }
+
+    public String getDateString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+        return date.format(formatter);
     }
 
     public void setDate(@NotNull(message = "Neplatné datum") LocalDate date) {
