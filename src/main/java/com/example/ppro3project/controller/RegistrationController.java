@@ -40,11 +40,18 @@ public class RegistrationController {
     }
 
     @GetMapping("/create/{id}")
-    public String create(Model model, @PathVariable long id) {
+    public String create(Model model, @PathVariable long id, Principal principal) {
         this.project = projectService.getProjectById(id);
+        // Kontrola jestli existuje projekt
         if (project == null) {
-            return "redirect:/registrations";
+            return "redirect:/registrations/";
         }
+        // Kontrola zda uživatel není již registrovaný
+        if (project.isUserRegister(principal.getName()))
+        {
+            return "redirect:/projects/detail/" + project.getId();
+        }
+
         model.addAttribute("project", project);
         model.addAttribute("registration", new Registration());
         model.addAttribute("edit", false);

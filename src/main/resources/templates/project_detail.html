@@ -49,6 +49,37 @@
             </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-6 col-lg-4">
+        <div class="card mt-2">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <h4 class="card-title">Seznam dobrovolníků</h4>
+              <div class="float-end" style="white-space: nowrap;" sec:authorize="hasRole('DOBROVOLNIK')">
+                <a class="btn btn-sm btn-outline-success mb-2 me-2" th:href="@{'/registrations/create/' + ${project.id}}">Příhlásit se <i class="bi bi-pencil-square"></i></a>
+              </div>
+            </div>
+            <div class="divideLine mb-2"></div>
+          </div>
+          <ul class="list-group list-group-flush" th:each="registration: ${project.getRegistrations()}">
+            <li class="list-group-item">
+              <span class="float-start">Dobrovolník:<br>Datum:</span>
+              <span class="float-end">
+                <span th:text="${registration.user.getUsername()}"></span>
+                <br>
+                <span th:text="${registration.getDateString()}"></span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-8">
+        <div class="mt-2">
+
+        </div>
+      </div>
+    </div>
   </section>
 
 </body>

@@ -114,4 +114,17 @@ public class Project {
     public void setOrganizer(User organizer) {
         this.organizer = organizer;
     }
+
+    public List<Registration> getRegistrations() {
+        return registrations;
+    }
+
+    public boolean isUserRegister(String username) {
+        for (Registration registration : registrations) {
+            if (registration.getUser().getUsername().equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
