@@ -31,7 +31,6 @@ public class ProjectController {
 
     @GetMapping("/")
     public String list(Model model) {
-
         model.addAttribute("projects", projectService.getAllProjects());
         return "projects_list";
     }

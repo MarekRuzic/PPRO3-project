@@ -6,6 +6,7 @@ import com.example.ppro3project.repository.RegistrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,18 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Override
     public List<Registration> getAllRegistrations() {
         return registrationRepository.findAll();
+    }
+
+    @Override
+    public List<Registration> getAllRegistrationsForUser(String username) {
+        registrationRepository.findAll();
+        List<Registration> registrations = new ArrayList<>();
+        for (Registration registration : registrationRepository.findAll()) {
+            if (registration.getUser().getUsername().equals(username)) {
+                registrations.add(registration);
+            }
+        }
+        return registrations;
     }
 
     @Override

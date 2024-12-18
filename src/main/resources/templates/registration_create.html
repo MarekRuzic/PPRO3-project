@@ -15,11 +15,18 @@
         <form th:action="@{'/registrations/save'}" method="post" th:object="${registration}">
             <div class="mb-3">
                 <label for="projectName" class="form-label">Název projektu</label>
-                <input type="text" class="form-control" id="projectName" th:field="*{project}" aria-describedby="projectNameWarning">
-
+                <input type="text" class="form-control" id="projectName" th:value="${project.name}" aria-describedby="projectNameWarning" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="registrationDate" class="form-label">Datum registrace na projekt</label>
+                <input type="date" class="form-control" id="registrationDate"  aria-describedby="projectNameWarning" readonly>
             </div>
             <button type="submit" class="btn btn-primary">Vytvořit novou událost</button>
+
         </form>
+        <script>
+            document.getElementById('registrationDate').valueAsDate = new Date();
+        </script>
     </section>
 
 </body>

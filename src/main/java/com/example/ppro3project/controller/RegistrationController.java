@@ -12,6 +12,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/registrations")
@@ -20,6 +25,7 @@ public class RegistrationController {
     private final ProjectService projectService;
     private final UserService userService;
     private final RegistrationService registrationService;
+    private Project project = null;
 
     public RegistrationController(ProjectService projectService, UserService userService, RegistrationService registrationService) {
         this.projectService = projectService;
@@ -28,13 +34,18 @@ public class RegistrationController {
     }
 
     @GetMapping("/")
-    public String list(Model model) {
-        model.addAttribute("registrations", registrationService.getAllRegistrations());
+    public String list(Model model, Principal principal) {
+        model.addAttribute("registrations", registrationService.getAllRegistrationsForUser(principal.getName()));
         return "registration_list";
     }
 
-    @GetMapping("/create")
-    public String create(Model model) {
+    @GetMapping("/create/{id}")
+    public String create(Model model, @PathVariable long id) {
+        this.project = projectService.getProjectById(id);
+        if (project == null) {
+            return "redirect:/registrations";
+        }
+        model.addAttribute("project", project);
         model.addAttribute("registration", new Registration());
         model.addAttribute("edit", false);
         return "registration_create";
@@ -47,11 +58,17 @@ public class RegistrationController {
     }
 
     @PostMapping("/save")
-    public String save(@Valid Registration registration, BindingResult bindingResult, Model model, Principal principal) {
+    public String save(@Valid Registration registration, BindingResult bindingResult,
+                       Model model, Principal principal) {
+
         /*if (bindingResult.hasErrors()) {
             model.addAttribute("edit", true);
             return "registration_create";
         }*/
+
+        registration.setProject(this.project);
+        registration.setUser(userService.findByUsername(principal.getName()));
+        registration.setDate(Instant.ofEpochMilli(new Date().getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
         registrationService.saveRegistration(registration);
         return "redirect:/registrations/";
     }
