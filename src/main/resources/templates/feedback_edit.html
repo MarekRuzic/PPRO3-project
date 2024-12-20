@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{/fragments/layouts/base_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Zpětná vazba</title>
+</head>
+<body>
+    <section layout:fragment="content" class="container">
+        <h3 class="text-center mb-5 mt-3">Formulář pro zpětnou vazbu</h3>
+        <hr>
+        <form th:action="@{'/feedbacks/save'}" method="post" th:object="${feedback}">
+            <input type="hidden" id="hidden" th:field="*{id}">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Událost</span>
+                <input type="text" class="form-control" value="Nějaký název" readonly style="background: white">
+                <span class="input-group-text">Datum:</span>
+                <input type="date" id="feedbackDate" class="form-control" readonly style="background: white">
+            </div>
+            <div class="mb-3">
+                <label for="rating" class="form-label">Hodnocení</label>
+                <input type="number" min="1" max="5" class="form-control" id="rating" th:field="*{rating}" value="3">
+                <div id="locationWarning" class="form-text text-danger" th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}"></div>
+            </div>
+            <div class="mb-3">
+                <label for="comment" class="form-label">Komentář</label>
+                <textarea class="form-control" id="comment" rows="3" th:field="*{comment}"></textarea>
+                <span id="descriptionWarning" class="form-text text-danger" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Odeslat zpětnou vazbu</button>
+        </form>
+        <script>
+            document.getElementById('feedbackDate').valueAsDate = new Date();
+        </script>
+    </section>
+</body>
+</html>

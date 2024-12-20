@@ -45,6 +45,9 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<Registration> registrations;
 
+    @OneToMany(mappedBy = "feedbackProject", cascade = CascadeType.ALL)
+    private List<Feedback> feedbacks;
+
     public Project(long id, String name, String description, String location, LocalDateTime date, User organizer) {
         this.id = id;
         this.name = name;

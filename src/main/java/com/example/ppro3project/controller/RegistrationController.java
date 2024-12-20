@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -60,19 +58,12 @@ public class RegistrationController {
 
     @GetMapping("/delete/{id}")
     public String delete(Model model, @PathVariable long id) {
-        projectService.deleteProjectById(id);
+        registrationService.deleteRegistrationById(id);
         return "redirect:/registrations/";
     }
 
     @PostMapping("/save")
-    public String save(@Valid Registration registration, BindingResult bindingResult,
-                       Model model, Principal principal) {
-
-        /*if (bindingResult.hasErrors()) {
-            model.addAttribute("edit", true);
-            return "registration_create";
-        }*/
-
+    public String save(@Valid Registration registration, BindingResult bindingResult, Model model, Principal principal) {
         registration.setProject(this.project);
         registration.setUser(userService.findByUsername(principal.getName()));
         registration.setDate(Instant.ofEpochMilli(new Date().getTime()).atZone(ZoneId.systemDefault()).toLocalDate());

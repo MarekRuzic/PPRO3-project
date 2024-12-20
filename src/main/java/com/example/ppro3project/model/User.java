@@ -21,6 +21,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Registration> registrations;
 
+    @OneToMany(mappedBy = "feedbackUser", cascade = CascadeType.ALL)
+    private List<Feedback> feedbacks;
+
     public Long getId() {
         return id;
     }

@@ -18,7 +18,7 @@
         <th scope="col">Datum</th>
         <th scope="col">Událost</th>
         <th scope="col">Dobrovolník</th>
-        <th scope="col">Tlačítko</th>
+        <th scope="col" colspan="2">Tlačítka</th>
       </tr>
       </thead>
       <tbody>
@@ -27,7 +27,12 @@
         <td th:text="${registration.project.getName()}"></td>
         <td th:text="${registration.user.getUsername()}"></td>
         <td><a class="btn btn-sm btn-success"
-               th:href="@{'/projects/detail/' + ${registration.project.getId()}}">Více o události</a></td>
+               th:href="@{'/projects/detail/' + ${registration.project.getId()}}">Více o události <i class="bi bi-eye"></i></a>
+        </td>
+        <td><a class="btn btn-sm btn-outline-danger"
+               th:href="@{'/registrations/delete/' + ${registration.project.getId()}}"
+               onclick="return confirm('Opravdu si přejete odeberat registraci na tuto událost?')">Odebrat registraci <i class="bi bi-person-dash-fill"></i></a>
+        </td>
       </tr>
       </tbody>
     </table>
