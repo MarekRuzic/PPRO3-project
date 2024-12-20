@@ -80,12 +80,25 @@
         </div>
       </div>
     </div>
-    <div th:each="feedback: ${feedbacks}">
-      <hr>
-      <p th:text="${feedback.getFeedbackDateString()}"></p>
-      <p th:text="${feedback.rating}"></p>
-      <p th:text="${feedback.comment}"></p>
+    <hr>
+    <div class="row">
+      <a class="btn btn-success m-2" th:href="@{'/feedbacks/create/' + ${project.id}}">Přidat novou zpětnou vazbu</a>
+      <div class="col-12 col-md-6 col-lg-3" th:each="feedback: ${feedbacks}">
+        <div class="border border-secondary rounded m-1 p-1">
+          <a th:if="${feedback.feedbackUser.getUsername() == username}" class="btn btn-sm btn-outline-warning float-start" th:href="@{'/feedbacks/edit/' + ${feedback.id}}"><i class="bi bi-pencil-square"></i></a>
+          <a th:if="${feedback.feedbackUser.getUsername() == username}" class="btn btn-sm btn-outline-danger float-end" th:href="@{'/feedbacks/delete/' + ${feedback.id}}"><i class="bi bi-trash"></i></a>
+          <h4 class="text-center" th:text="${feedback.getFeedbackDateString()}"></h4>
+          <hr>
+          <span class="text-warning" th:each="star : ${#numbers.sequence(1, 5)}">
+            <i th:class="${star <= feedback.rating ? 'bi bi-star-fill' : 'bi bi-star'}"></i>
+          </span>
+          <hr>
+          <h5>Komentář:</h5>
+          <p th:text="${feedback.comment}"></p>
+        </div>
+      </div>
     </div>
+
   </section>
 
 </body>

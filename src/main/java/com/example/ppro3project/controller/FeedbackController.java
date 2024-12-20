@@ -61,13 +61,13 @@ public class FeedbackController {
 
     @PostMapping("/save")
     public String save(@Valid Feedback feedback, BindingResult bindingResult, Model model, Principal principal) {
-        feedback.setFeedbackProject(project);
+        feedback.setFeedbackProject(this.project);
         feedback.setFeedbackUser(userService.findByUsername(principal.getName()));
         feedback.setFeedbackDate(Instant.ofEpochMilli(new Date().getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime());
         if (bindingResult.hasErrors()) {
             model.addAttribute("edit", true);
         }
         feedbackService.saveFeedback(feedback);
-        return "redirect:/projects/";
+        return "redirect:/projects/detail/" + this.project.getId();
     }
 }

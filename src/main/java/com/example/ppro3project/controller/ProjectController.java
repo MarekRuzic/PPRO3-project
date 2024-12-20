@@ -78,7 +78,7 @@ public class ProjectController {
     }
 
     @GetMapping("/detail/{id}")
-    public String detail(Model model, @PathVariable int id) {
+    public String detail(Model model, @PathVariable int id, Principal principal) {
         Project project = projectService.getProjectById(id);
         if (project == null) {
             return "redirect:/";
@@ -86,6 +86,7 @@ public class ProjectController {
         model.addAttribute("project", project);
         List<Feedback> feedbacks = feedbackService.getAllFeedbacksForProject(id);
         model.addAttribute("feedbacks", feedbacks);
+        model.addAttribute("username", principal.getName());
         return "project_detail";
     }
 
