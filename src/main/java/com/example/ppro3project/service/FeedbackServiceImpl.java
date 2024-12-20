@@ -5,8 +5,10 @@ import com.example.ppro3project.model.Project;
 import com.example.ppro3project.repository.FeedbackRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class FeedbackServiceImpl implements FeedbackService {
@@ -38,5 +40,12 @@ public class FeedbackServiceImpl implements FeedbackService {
     @Override
     public void saveFeedback(Feedback feedback) {
         feedbackRepository.save(feedback);
+    }
+
+    @Override
+    public List<Feedback> getAllFeedbacksForProject(long projectId) {
+        return getAllFeedbacks().stream()
+                .filter(feedback -> feedback.getFeedbackProject().getId() == projectId)
+                .collect(Collectors.toList());
     }
 }

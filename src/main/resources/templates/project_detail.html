@@ -80,6 +80,12 @@
         </div>
       </div>
     </div>
+    <div th:each="feedback: ${feedbacks}">
+      <hr>
+      <p th:text="${feedback.getFeedbackDateString()}"></p>
+      <p th:text="${feedback.rating}"></p>
+      <p th:text="${feedback.comment}"></p>
+    </div>
   </section>
 
 </body>

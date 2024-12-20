@@ -10,4 +10,5 @@ public interface FeedbackService {
     Feedback getFeedbackById(long id);
     void deleteFeedbackById(long id);
     void saveFeedback(Feedback feedback);
+    List<Feedback> getAllFeedbacksForProject(long projectId);
 }

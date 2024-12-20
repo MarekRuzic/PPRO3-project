@@ -1,7 +1,9 @@
 package com.example.ppro3project.controller;
 
+import com.example.ppro3project.model.Feedback;
 import com.example.ppro3project.model.Project;
 import com.example.ppro3project.model.User;
+import com.example.ppro3project.service.FeedbackService;
 import com.example.ppro3project.service.ProjectService;
 import com.example.ppro3project.service.UserService;
 import jakarta.validation.Valid;
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.beans.FeatureDescriptor;
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequestMapping("/projects")
@@ -22,11 +26,13 @@ public class ProjectController {
 
     private final ProjectService projectService;
     private final UserService userService;
+    private final FeedbackService feedbackService;
 
     @Autowired
-    public ProjectController(ProjectService projectService, UserService userService) {
+    public ProjectController(ProjectService projectService, UserService userService, FeedbackService feedbackService) {
         this.projectService = projectService;
         this.userService = userService;
+        this.feedbackService = feedbackService;
     }
 
     @GetMapping("/")
@@ -74,11 +80,13 @@ public class ProjectController {
     @GetMapping("/detail/{id}")
     public String detail(Model model, @PathVariable int id) {
         Project project = projectService.getProjectById(id);
-        if (project != null) {
-            model.addAttribute("project", project);
-            return "project_detail";
+        if (project == null) {
+            return "redirect:/";
         }
-        return "redirect:/";
+        model.addAttribute("project", project);
+        List<Feedback> feedbacks = feedbackService.getAllFeedbacksForProject(id);
+        model.addAttribute("feedbacks", feedbacks);
+        return "project_detail";
     }
 
     @GetMapping("/delete/{id}")
