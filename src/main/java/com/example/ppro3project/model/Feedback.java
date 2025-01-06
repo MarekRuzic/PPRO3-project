@@ -29,10 +29,9 @@ public class Feedback {
     @Max(value = 5, message = "Hodnota je příliž velká")
     private int rating;
 
-    @NotBlank(message = "Je potřeba napsat datum")
+    @NotBlank
     private String comment;
 
-    @NotNull
     private LocalDateTime feedbackDate;
 
     public long getId() {
@@ -77,7 +76,7 @@ public class Feedback {
         this.comment = comment;
     }
 
-    public @NotNull LocalDateTime getFeedbackDate() {
+    public LocalDateTime getFeedbackDate() {
         return feedbackDate;
     }
 
@@ -86,7 +85,7 @@ public class Feedback {
         return feedbackDate.format(formatter);
     }
 
-    public void setFeedbackDate(@NotNull LocalDateTime feedbackDate) {
+    public void setFeedbackDate(LocalDateTime feedbackDate) {
         this.feedbackDate = feedbackDate;
     }
 }

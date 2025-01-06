@@ -53,10 +53,10 @@ public class FeedbackController {
         return "feedback_edit";
     }
 
-    @GetMapping("/delete/{id}")
-    public String delete(Model model, @PathVariable long id) {
+    @GetMapping("/delete/{id}/{id_project}")
+    public String delete(Model model, @PathVariable long id, @PathVariable long id_project) {
         feedbackService.deleteFeedbackById(id);
-        return "redirect:/projects/detail/" + id;
+        return "redirect:/projects/detail/" + id_project;
     }
 
     @PostMapping("/save")
@@ -66,6 +66,8 @@ public class FeedbackController {
         feedback.setFeedbackDate(Instant.ofEpochMilli(new Date().getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime());
         if (bindingResult.hasErrors()) {
             model.addAttribute("edit", true);
+            model.addAttribute("feedback", feedback);
+            return "feedback_edit";
         }
         feedbackService.saveFeedback(feedback);
         return "redirect:/projects/detail/" + this.project.getId();

@@ -2,17 +2,58 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/fragments/layouts/base_layout}">
+      layout:decorate="~{/fragments/layouts/base_layout}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Home</title>
 </head>
 <body>
     <section layout:fragment="content">
         <div class="container">
-            <h1 class="btn">PPRO project</h1>
-            <a th:href="@{'/cars/'}">Seznam vozidel</a><br>
-            <br>
-            <a th:href="@{'/drivers/'}">Seznam řidičů</a>
+            <div class="d-flex justify-content-evenly align-items-center py-4">
+                <div>
+                    <p style="max-width: 700px;" class="mx-2">Naše platforma vám umožňuje snadno a rychle vytvořit událost dle vašich potřeb. Stačí několik jednoduchých kroků a vaše událost je připravena ke sdílení!
+
+                        Začněte kliknutím na tlačítko „Vytvořit událost“. Zadejte název události, vyberte datum a čas, a pokud je to potřeba, přidejte popis, který pomůže hostům pochopit, o co jde. Máte možnost zvolit, zda bude událost soukromá nebo veřejná, a můžete přidat i místo konání nebo online odkaz.
+
+                        Pro lepší organizaci můžete využít rozšířených funkcí, jako je správa seznamu hostů nebo zasílání pozvánek e-mailem. Po dokončení vytvoření získáte odkaz na svou událost, který můžete jednoduše sdílet s přáteli, kolegy nebo rodinou.
+
+                        Vytváření událostí nikdy nebylo jednodušší – vyzkoušejte to ještě dnes!</p>
+                    <a th:href="@{'/projects/create'}" class="btn btn-primary" sec:authorize="hasRole('ORGANIZATOR')">Vytvořit novou událost</a>
+                </div>
+                <div class="d-none d-lg-flex">
+                    <img src="svg/undraw_projections_fhch.svg" alt="Portfolio" style="width: 100%; max-height: 300px;"  class="ms-3">
+                </div>
+            </div>
+            <div class="d-flex justify-content-evenly align-items-center flex-wrap flex-lg-nowrap py-4">
+                <div class="">
+                    <img src="svg/undraw_partying_3qad.svg" alt="Portfolio" style="width: 100%; max-height: 300px;"  class="">
+                </div>
+                <div>
+                    <p style="max-width: 700px;" class="mx-2">Naše platforma nejen umožňuje vytváření událostí, ale také nabízí možnost zapojení dobrovolníků. Pokud organizujete akci, můžete snadno přidat možnost přihlásit se jako dobrovolník a pomoci s různými úkoly, ať už jde o pomoc při registraci účastníků, zajištění občerstvení nebo asistenci při průběhu samotné akce.
+
+                        Pro přidání dobrovolníků stačí při vytváření události uvést, jaké úkoly potřebujete pokrýt, a stanovit počet dobrovolníků, které hledáte. Zájemci se pak mohou jednoduše přihlásit přímo na stránce události.
+
+                        Pomocí této funkce můžete efektivně koordinovat dobrovolníky a mít přehled o tom, kdo se na jaké úkoly přihlásil. Všichni účastníci události budou mít přehled o aktuálních potřebách a mohou se rozhodnout, jakým způsobem chtějí přispět. Přidejte dobrovolníky do své akce a vytvořte tak silnou komunitu lidí, kteří se rádi podílejí na jejím úspěchu!</p>
+                    <a th:href="@{'/registrations/'}" class="btn btn-outline-primary float-end">Seznam registrací</a>
+                </div>
+            </div>
+            <div class="d-flex justify-content-evenly align-items-center flex-wrap flex-lg-nowrap py-4">
+                <div class="d-flex d-lg-none">
+                    <img src="svg/undraw_feedback_tmp7.svg" alt="Portfolio" style="width: 100%; max-height: 300px;"  class="ms-3">
+                </div>
+                <div>
+                    <p style="max-width: 700px;" class="mx-2">Po každé události mají účastníci možnost přidat svou zpětnou vazbu a ohodnotit akci pomocí jednoduchého systému hvězdiček od 1 do 5. Tento nástroj vám pomůže získat cenné názory na to, co se líbilo, co by mohlo být vylepšeno a jaká část akce byla nejvíce přínosná.
+
+                        Hodnocení pomocí hvězdiček je rychlé a snadné, a umožňuje účastníkům vyjádřit svůj názor na různé aspekty události, jako je organizace, komunikace, prostředí a celkový dojem. Každá zpětná vazba je cenná, protože vám pomůže zlepšovat budoucí akce a poskytne vám informace, které můžete využít pro efektivní plánování.
+
+                        Zpětná vazba také pomáhá ostatním účastníkům při rozhodování, zda se na akci zúčastnit v budoucnu. Tato funkce zajišťuje otevřenou komunikaci a přispívá k lepšímu a efektivnějšímu pořádání událostí pro všechny!</p>
+                    <a th:href="@{'/projects/'}" class="btn btn-secondary">Přidat zpětnou vazbu</a>
+                </div>
+                <div class="d-none d-lg-flex">
+                    <img src="svg/undraw_feedback_tmp7.svg" alt="Portfolio" style="width: 100%; max-height: 300px;"  class="ms-3">
+                </div>
+            </div>
         </div>
     </section>
 </body>

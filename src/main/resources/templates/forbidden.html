@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/fragments/layouts/base_layout}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Home</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="container">
+        <h1 class="text-center my-3">Přístup odepřen</h1>
+        <div class="d-flex justify-content-center my-2">
+            <img src="svg/undraw_access-denied_krem.svg" alt="Portfolio" style="width: 100%; max-height: 300px;"  class="">
+        </div>
+        <a th:href="@{'/'}" class="btn btn-primary text-center d-block mt-2">Zpět na úvod</a>
+    </div>
+</section>
+</body>
+</html>

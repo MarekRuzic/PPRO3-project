@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class IndexController {
 
     @GetMapping("/403")
-    @ResponseBody
     public String forbidden() {
-        return "<h1>Access denied</h1>";
+        return "forbidden";
     }
 
     @GetMapping("/admin/")
